@@ -14,7 +14,7 @@ import os
 import string
 import numpy as np
 import argparse
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def parse_args():
     parser = argparse.ArgumentParser(description='BatchNorm absorption')

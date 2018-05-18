@@ -5,7 +5,7 @@ import os
 import sklearn.neighbors as nn
 import caffe
 from skimage import color
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import color_quantization as cq
 
 # ***************************************

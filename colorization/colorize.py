@@ -1,8 +1,9 @@
 import numpy as np
 import os
 import skimage.color as color
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import scipy.ndimage.interpolation as sni
+from scipy.misc import imsave
 import caffe
 import argparse
 
@@ -58,4 +59,5 @@ if __name__ == '__main__':
 	img_lab_out = np.concatenate((img_l[:,:,np.newaxis],ab_dec_us),axis=2) # concatenate with original image L
 	img_rgb_out = (255*np.clip(color.lab2rgb(img_lab_out),0,1)).astype('uint8') # convert back to rgb
 
-	plt.imsave(args.img_out, img_rgb_out)
+	imsave(args.img_out, img_rgb_out)
+	#plt.imsave(args.img_out, img_rgb_out)
