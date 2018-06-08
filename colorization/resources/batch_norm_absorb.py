@@ -91,7 +91,7 @@ if __name__ == '__main__':
 		POST_NAME = POST_NAMES[ll]
 		LIN_NAME = LIN_NAMES[ll]
 
-		print 'LAYERS %s, %s'%(PRE_NAME,BN_NAME)
+		print('LAYERS %s, %s'%(PRE_NAME,BN_NAME))
 		# print net1.blobs[BN_NAME].data.shape
 		# print net1.blobs[PRE_NAME].data.shape
 
@@ -106,15 +106,15 @@ if __name__ == '__main__':
 		slopes = np.sqrt(1./scale)
 		offs = -mean*slopes
 
-		print '  Computing error on data...'
+		print('  Computing error on data...')
 		bn_blob_rep = in_blob*slopes[np.newaxis,:,np.newaxis,np.newaxis]+offs[np.newaxis,:,np.newaxis,np.newaxis]
 
 		# Visually verify that factors are correct
-		print '  Maximum error: %.3e'%np.max(np.abs(bn_blob_rep[bn_blob>0] - bn_blob[bn_blob>0]))
-		print '  RMS error: %.3e'%np.linalg.norm(bn_blob_rep[bn_blob>0] - bn_blob[bn_blob>0])
-		print '  RMS signal: %.3e'%np.linalg.norm(bn_blob_rep[bn_blob>0])
+		print('  Maximum error: %.3e'%np.max(np.abs(bn_blob_rep[bn_blob>0] - bn_blob[bn_blob>0])))
+		print('  RMS error: %.3e'%np.linalg.norm(bn_blob_rep[bn_blob>0] - bn_blob[bn_blob>0]))
+		print('  RMS signal: %.3e'%np.linalg.norm(bn_blob_rep[bn_blob>0]))
 
-		print '  Absorbing slope and offset...'
+		print('  Absorbing slope and offset...')
 		# absorb slope and offset into appropriate parameter
 		if(PRE_POST[ll]==0): # linear layer is before
 			if(CONV_DECONV[ll]==0): # convolution
@@ -129,4 +129,4 @@ if __name__ == '__main__':
 
 	for arg in vars(args):
 		print('[%s] =' % arg, getattr(args, arg))
-	print 'Saving model into: %s'%MODEL2_PATH
+	print('Saving model into: %s'%MODEL2_PATH)

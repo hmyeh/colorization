@@ -40,8 +40,8 @@ if __name__ == '__main__':
 	rz.caffe_shapes(net2,to_print=True)
 
 	# CONV_INDS = np.where(np.array([layer.type for layer in net1.layers])=='Convolution')[0]
-	print net1.params.keys()
-	print net2.params.keys()
+	print(net1.params.keys())
+	print(net2.params.keys())
 
 	for (ll,layer) in enumerate(net2.params.keys()):
 		P = len(net2.params[layer]) # number of blobs
@@ -62,4 +62,4 @@ if __name__ == '__main__':
 
 	for arg in vars(args):
 		print('[%s] =' % arg, getattr(args, arg))
-	print 'Saving model into: %s'%MODEL2_PATH
+	print('Saving model into: %s'%MODEL2_PATH)
