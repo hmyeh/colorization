@@ -42,12 +42,12 @@ def prepare_net(proto, model, cluster):
     in_shape = net.blobs['data_l'].data.shape[2:] # get input shape
     out_shape = net.blobs['class8_ab'].data.shape[2:] # get output shape
 
-    print 'Input dimensions: %s' % str(in_shape)
-    print 'Output dimensions: %s' % str(out_shape)
+    print('Input dimensions: %s' % str(in_shape))
+    print('Output dimensions: %s' % str(out_shape))
 
     pts_in_hull = np.load(cluster) # load cluster centers
     net.params['class8_ab'][0].data[:,:,0,0] = pts_in_hull.transpose((1,0)) # populate cluster centers as 1x1 convolution kernel
-    print 'Annealed-Mean Parameters populated'
+    print('Annealed-Mean Parameters populated')
 
     return net, in_shape, out_shape
 
@@ -100,7 +100,7 @@ def main(argv):
 
     # Parse arguments
     args = parse_args(argv)
-    print args
+    print(args)
 
     # Prepare caffe and net
     caffe.set_mode_gpu()
@@ -112,11 +112,11 @@ def main(argv):
     with open(args.flist) as flist:
         for fpath in flist:
             fpath = fpath.rstrip('\n')
-            print 'Processing file %s ...' % fpath
+            print('Processing file %s ...' % fpath)
             img = process(net, in_shape, out_shape, fpath)
             save_img(img, fpath, args.output)
 
-    print 'Done!'
+    print('Done!')
 
 
 if __name__ == "__main__":

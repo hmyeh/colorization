@@ -24,7 +24,7 @@ class BGR2LabLayer(caffe.Layer):
         if(len(bottom)!=1):
             raise Exception("Layer should a single input")
         if(bottom[0].data.shape[1]!=3):
-            raise Exception("Input should be 3-channel BGR image")
+            raise Exception("Input should be 3-channel RGB image")
 
         self.N = bottom[0].data.shape[0]
         self.X = bottom[0].data.shape[2]
@@ -34,7 +34,7 @@ class BGR2LabLayer(caffe.Layer):
         top[0].reshape(self.N,3,self.X,self.Y)
  
     def forward(self, bottom, top):
-        top[0].data[...] = color.rgb2lab(bottom[0].data[:,::-1,:,:].astype('uint8').transpose((2,3,0,1))).transpose((2,3,0,1))
+        top[0].data[...] = color.rgb2lab(bottom[0].data.astype('uint8').transpose((2,3,0,1))).transpose((2,3,0,1))
 
     def backward(self, top, propagate_down, bottom):
         # no back-prop
@@ -310,7 +310,7 @@ class NNEncode():
         self.K = self.cc.shape[0]
         self.NN = int(NN)
         self.sigma = sigma
-        self.nbrs = nn.NearestNeighbors(n_neighbors=NN, algorithm='ball_tree').fit(self.cc)
+        self.nbrs = nn.NearestNeighbors(n_neighbors=self.NN, algorithm='ball_tree').fit(self.cc)
 
         self.alreadyUsed = False
 
